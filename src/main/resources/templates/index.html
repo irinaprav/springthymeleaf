@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" charset="UTF-8">
+    <title>todos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" media="screen" >
+</head>
+<body>
+<div class="container">
+    <div id="header" class="header">
+        <form method="post" th:object="${textobj}" th:action="@{/savetext}">
+                  <input type="text" id="todo-input" th:field="*{text}"/>
+            <input type="submit" id="add" class="control-btn" value="Add">
+            <!--<span id="add" class="control-btn">Add</span>-->
+        </form>
+
+    </div>
+
+
+    <form method="post" th:object="${checkedobj}" th:action="@{/checkedsave}">
+    <ul id="todos">
+        <li th:each="todo : ${todos}">
+            <input type="checkbox" th:text="${todo.text}" th:field="*{checkedItems}" th:value="${todo.text}">
+        </li>
+    </ul>
+    <input type="submit" id="clear" class="control-btn" value="Clear"/>
+    </form>
+</div>
+</body>
+</html>
